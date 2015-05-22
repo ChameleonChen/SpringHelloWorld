@@ -1,4 +1,25 @@
+/**
+ * 为Gradle添加 spring-boot 插件，这样脚本都后续执行过程中能够使用 <b>apply plugin:'spring-boot'</b>
+ * 参考 {@link https://spring.io/guides/gs/serving-mobile-web-content/}.
+ * @author ChameleonChen
+ * @return
+ */
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+	}
+}
+
 apply plugin:'java'
+apply plugin:'eclipse'
+apply plugin:'idea'
+
+// 使用 spring-boot 插件，这个插件能够让 gradle 脚本编译相关库
+apply plugin:'spring-boot'
 
 repositories {
     mavenCentral()
@@ -9,4 +30,12 @@ repositories {
 dependencies {
     compile("org.springframework:spring-context:4.1.6.RELEASE")
     testCompile("org.springframework:spring-test:4.1.6.RELEASE")
+	
+	// Build Spring web mvc
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.springframework.boot:spring-boot-starter-mobile")
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.3'
 }

@@ -20,6 +20,18 @@ public class Application {
 			}
 		};
 	}
+
+	// 加上之后运行会出错
+//	@Bean
+//	MessageService mock2MessageService() {
+//		return new MessageService() {
+//			
+//			@Override
+//			public String getMessage() {
+//				return "yes";
+//			}
+//		};
+//	}
 	
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
